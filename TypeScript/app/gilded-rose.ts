@@ -33,26 +33,6 @@ export class GildedRose {
         return this.items;
     }
 
-    isSellInDatePassed(item: Item): boolean {
-        return item.sellIn < 0;
-    }
-
-    isAgedBrie(item: Item): boolean {
-        return item.name === 'Aged Brie';
-    }
-
-    isBackStagePass(item: Item): boolean {
-        return item.name === 'Backstage passes to a TAFKAL80ETC concert';
-    }
-
-    isSulfuras(item: Item): boolean {
-        return item.name === 'Sulfuras, Hand of Ragnaros';
-    }
-
-    isConjuredItem(item: Item): boolean {
-        return item.name.toLowerCase().indexOf('conjured') >= 0;
-    }
-
     determineSellIn(item: Item): number {
         return this.isSulfuras(item) ? SellInDecrease.NO_DECREASE : SellInDecrease.STANDARD_DECREASE;
     }
@@ -97,6 +77,26 @@ export class GildedRose {
         } else {
             return this.isQualityAllowedToIncrease(item.quality, value) ? (item.quality + value) : QualityChange.MAX_DEFAULT;
         }
+    }
+
+    isSellInDatePassed(item: Item): boolean {
+        return item.sellIn < 0;
+    }
+
+    isAgedBrie(item: Item): boolean {
+        return item.name === 'Aged Brie';
+    }
+
+    isBackStagePass(item: Item): boolean {
+        return item.name === 'Backstage passes to a TAFKAL80ETC concert';
+    }
+
+    isSulfuras(item: Item): boolean {
+        return item.name === 'Sulfuras, Hand of Ragnaros';
+    }
+
+    isConjuredItem(item: Item): boolean {
+        return item.name.toLowerCase().indexOf('conjured') >= 0;
     }
 
     isQualityAllowedToIncrease(current: number, increase: number): boolean {
